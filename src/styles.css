@@ -1,6 +1,6 @@
 html {
-  /*background: url('./assets/background.png') no-repeat center center fixed;*/
-  background: url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/background.png?raw=true') no-repeat center center fixed;
+  background: url('../assets/background.png') no-repeat center center fixed;
+  /*background: url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/background.png?raw=true') no-repeat center center fixed;*/
   box-sizing: border-box;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -9,7 +9,14 @@ html {
   z-index:0;
   overflow: hidden;
 }
+/*
+Added font family for contents inside body
+ */
+body {
+  font-family: "American Typewriter", "Arial";
+}
 
+/* style content for heading h1*/
 h1 {
   text-align: center;
   font-size: 90px;
@@ -18,29 +25,35 @@ h1 {
   -webkit-text-stroke: 2px black;
 }
 
+/* style content for heading h2*/
 h2 {
   text-align: center;
   font-size: 40px;
-  color: white;
+  color: #FFE9BC;
   -webkit-text-stroke: 1px black;
 }
 
+/* start button styling*/
 #start {
     text-align: center;
     font-size: 30px;
+  background-color: #D2313B;
+  color: white;
+  font-weight: bolder;
 }
 
-#timer{
-    color: white;
-}
 
+/*
+Add cursor image when the cursor is inside the grid
+Cursor image is image
+ */
 .grid {
   width: 600px;
   height: 400px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  /*cursor: url('./assets/mallet.png'), pointer;*/
+  cursor: url('../assets/camera.png'), pointer;
 }
 
 .hole {
@@ -49,23 +62,29 @@ h2 {
   position: relative;
 }
 
+/*
+background image is set as red fuji and styling pseudo class after
+ */
 .hole:after {
   display: block;
-  /*background: url("./assets/hole.png") bottom center no-repeat;*/
-  background: url("https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/hole.png?raw=true") bottom center no-repeat;
+  background: url("../assets/redFuji1.png") bottom center no-repeat;
+  /*background: url("https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/hole.png?raw=true") bottom center no-repeat;*/
   background-size:contain;
   content:'';
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: -40%;
+  bottom: -30%;
   z-index: 2;
   pointer-events:none;
 }
 
+/*
+background image is set as sunrise and styling for mole class
+ */
 .mole {
-  /*background:url('./assets/mole.png') bottom center no-repeat;*/
-  background:url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/mole.png?raw=true') bottom center no-repeat;
+  background:url('../assets/sunset.png') bottom center no-repeat;
+  /*background:url('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/mole.png?raw=true') bottom center no-repeat;*/
   background-size: 40%;
   position: absolute;
   top: 100%;

@@ -165,7 +165,8 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   // TODO: Write your code here
-
+  points++;
+  score.textContent = points
   return points;
 }
 
@@ -178,8 +179,8 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+  points = 0;
+  score.textContent = points;
   return points;
 }
 
@@ -191,7 +192,10 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
-  
+  if (time > 0){
+    time -= 1;
+    timerDisplay.textContent = time;
+  }
   return time;
 }
 
@@ -203,7 +207,7 @@ function updateTimer() {
 */
 function startTimer() {
   // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
+  timer = setInterval(updateTimer, 1000);
   return timer;
 }
 
@@ -216,9 +220,9 @@ function startTimer() {
 *
 */
 function whack(event) {
+  console.log("whack!")
   // TODO: Write your code here.
-  // call updateScore()
-  return points;
+  updateScore()
 }
 
 /**
@@ -228,7 +232,9 @@ function whack(event) {
 */
 function setEventListeners(){
   // TODO: Write your code here
-
+  for (let i=0; i< moles.length; i++) {
+    moles[i].addEventListener('click', whack)
+  }
   return moles;
 }
 
@@ -240,6 +246,7 @@ function setEventListeners(){
 */
 function setDuration(duration) {
   time = duration;
+  timerDisplay.textContent = time;
   return time;
 }
 
@@ -250,7 +257,7 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  // stopAudio(song);  //optional
+  stopAudio(song);  //optional
   clearInterval(timer);
   return "game stopped";
 }
@@ -262,12 +269,36 @@ function stopGame(){
 *
 */
 function startGame(){
+  play();
   setDuration(10);
+  startTimer();
   showUp();
   return "game started";
 }
 
 startButton.addEventListener("click", startGame);
+
+setEventListeners();
+
+const audioHit = new Audio("../assets/capture.mp3");
+const song = new Audio("../assets/festival.mp3");
+
+function playAudio(audioObject) {
+  audioObject.play();
+}
+
+function loopAudio(audioObject) {
+  audioObject.loop = true;
+  playAudio(audioObject);
+}
+
+function stopAudio(audioObject) {
+  audioObject.pause();
+}
+
+function play(){
+  playAudio(song);
+}
 
 
 // Please do not modify the code below.

@@ -21,7 +21,7 @@ let difficulty = "hard";
  *
  */
 function randomInteger(min, max) {
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -41,7 +41,13 @@ function randomInteger(min, max) {
  */
 function setDelay(difficulty) {
   // TODO: Write your code here.
-  
+  if(difficulty.toUpperCase() === 'HARD') {
+    return randomInteger(600, 1200);
+  } else if(difficulty.toUpperCase() === 'EASY') {
+    return 1500;
+  } else if(difficulty.toUpperCase() === 'NORMAL') {
+    return 1000;
+  }
 }
 
 /**
@@ -60,7 +66,13 @@ function setDelay(difficulty) {
  */
 function chooseHole(holes) {
   // TODO: Write your code here.
-
+  let newHole = Math.floor(Math.random() * (8 + 1))
+  if(newHole !== lastHole) {
+    lastHole = newHole;
+    return holes[newHole]
+  } else {
+    return chooseHole(holes);
+  }
 }
 
 /**

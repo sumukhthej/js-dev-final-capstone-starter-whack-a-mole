@@ -2,7 +2,7 @@
 
 A local game development studio has decided to create a new game that's based on Snap-At-Dawn. It's a game in which a player uses a camera to snap mount fuji when the sun rises over it, sun appear at random.
 
-![snapAtDwan](https://github.com/sumukhthej/js-dev-final-capstone-starter-whack-a-mole/tree/main/assets/sanpatdawn.gif?raw=true)
+![snapAtDwan](./assets/sanpatdawn.gif)
 
 # Installation
 

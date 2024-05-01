@@ -9,7 +9,7 @@ let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty = 'EASY';
 
 /**
  * Generates a random integer within a range.
@@ -165,7 +165,7 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   // TODO: Write your code here
-  points++;
+  ++points;
   score.textContent = points
   return points;
 }
@@ -220,9 +220,10 @@ function startTimer() {
 *
 */
 function whack(event) {
-  console.log("whack!")
+  playAudio(audioHit);
   // TODO: Write your code here.
   updateScore()
+  return points;
 }
 
 /**
@@ -237,6 +238,54 @@ function setEventListeners(){
   }
   return moles;
 }
+
+/**
+ * setDifficulty will remove all the 'checked' attribute from difficulty radio buttons
+ * Add 'checked' attribute to the button which is selected
+ * set difficulty variable value to the selected value
+ */
+function setDifficulty(event) {
+  let difficultyBtns = document.querySelectorAll('input[type="radio"]')
+  difficultyBtns.forEach(btn => {
+    btn.removeAttribute('checked');
+  })
+  event.target.setAttribute('checked', "");
+  difficulty = event.target.value
+}
+
+/**
+ * difficultyEventHandler will listen click even of the radio button and
+ * call setDifficulty function
+ */
+function difficultyEventHandler() {
+  let difficultyBtns = document.querySelectorAll('input[type="radio"]');
+  difficultyBtns.forEach(btn => btn.addEventListener('click', setDifficulty));
+}
+
+/**
+ * disableButtons will set disable to true for the start and difficulty radio button
+ * when the game is started
+ */
+function disableButtons() {
+  let difficultyBtns = document.querySelectorAll('input[type="radio"]')
+  difficultyBtns.forEach(btn => {
+    btn.setAttribute('disabled', "true");
+  })
+  startButton.disabled = true;
+}
+
+/**
+ * enableButtons will set disabled to false for the start and
+ * difficulty rado buttons when the game is stopped
+ */
+function enableButtons() {
+  let difficultyBtns = document.querySelectorAll('input[type="radio"]')
+  difficultyBtns.forEach(btn => {
+    btn.removeAttribute('disabled');
+  })
+  startButton.disabled = false;
+}
+
 
 /**
 *
@@ -259,6 +308,7 @@ function setDuration(duration) {
 function stopGame(){
   stopAudio(song);  //optional
   clearInterval(timer);
+  enableButtons();
   return "game stopped";
 }
 
@@ -269,19 +319,21 @@ function stopGame(){
 *
 */
 function startGame(){
+  // start the points from 0
+  points = 0;
+  disableButtons();
+  setEventListeners();
   play();
   setDuration(10);
   startTimer();
   showUp();
   return "game started";
 }
-
+difficultyEventHandler();
 startButton.addEventListener("click", startGame);
 
-setEventListeners();
-
-const audioHit = new Audio("../assets/capture.mp3");
-const song = new Audio("../assets/festival.mp3");
+const audioHit = new Audio("https://github.com/sumukhthej/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/capture.mp3?raw=true");
+const song = new Audio("https://github.com/sumukhthej/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/festival.mp3?raw=true");
 
 function playAudio(audioObject) {
   audioObject.play();

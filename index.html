@@ -1,6 +1,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="./src/styles.css">
+    <title>Snap-At-Dawn!!</title>
   </head>
   <body>
     <h1 id="title">Snap-At-Dawn!!</h1>
@@ -8,11 +9,21 @@
       <div>
         <h2>Click <button id="start">start</button> to play!</h2>
       </div>
-      <div>
-        <h2>score: <span id="score">0</span></h2>
-      </div>
-      <div>
-          <h2><span id="timer">0</span> seconds left.</h2>
+      <ul id="difficulty">
+        <li>
+          <input type="radio" id="easy" name="drone" value="EASY" checked />
+          <label for="easy">EASY</label>
+        </li>
+        <li>
+          <input type="radio" id="normal" name="drone" value="NORMAL"/>
+          <label for="normal">NORMAL</label>
+        </li>
+        <li>
+          <input type="radio" id="hard" name="drone" value="HARD"/>
+          <label for="hard">HARD</label>
+        </li>
+      </ul>
+        <h2><span id="timer">0</span> seconds left</span> || score: <span id="score">0</h2>
       </div>
     </div>
     <div class="grid">
